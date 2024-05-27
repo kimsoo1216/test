@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>영화 기생충 예고편 페이지</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
+        /* font-family: 'Noto Sans KR', sans-serif; */
+        /* 가장두꺼운 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;900&display=swap');
+        /* font-family: 'Noto Sans KR', sans-serif; */
+        /* 미디움 */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        /* font-family: 'Montserrat', sans-serif; */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+        /* font-family: 'Noto Sans KR', sans-serif; */
+        /* 가장 적절한 글자체 */
+
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            overflow-x: hidden;
+        }
+
+        ol,
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        ol::after,
+        ul::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(99, 99, 99);
+        }
+
+
+        .mnl li::after {
+            content: '◀';
+            opacity: 0;
+
+            position: absolute;
+            right: -1px;
+        }
+
+        .mnl li:hover::after {
+            opacity: 1;
+            color: #f08a42;
+            font-weight: bolder;
+        }
+
+        .mnl li:hover a {
+            color: #f08a42;
+            font-weight: bolder;
+        }
+
+
+        .smenu ul {
+            float: left;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            /* outline: 2px dotted red; */
+            padding: 22px 22px;
+
+            /* border: 1px solid #000; */
+        }
+
+
+        /* 메뉴 */
+        .menu {
+            position: absolute;
+            left: 65%;
+            font-size: 13px;
+        }
+
+        .smenu {
+            /* border: 1px solid #000; */
+            font-size: 13px;
+            line-height: 40px;
+            margin-top: -25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .smenutt {
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .smenutt:hover {
+            font-weight: bolder;
+            color: #f9f9d7;
+        }
+
+
+        .mnl {
+            float: none;
+            display: none;
+            transition: all .3s ease-in-out;
+        }
+
+
+        .smenu>ul>li:hover .mnl {
+            display: block;
+        }
+
+        .mnl>ol>li>a {
+            color: rgb(150, 150, 150);
+        }
+
+
+
+
+
+
+
+
+        /* 페이지 타이틀 */
+        .mtt {
+            /* border: 1px solid #000; */
+            border-bottom: 1px solid rgb(150, 150, 150);
+            position: fixed;
+            top: 0;
+
+            background-color: rgb(182, 182, 182);
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+
+            height: 30px;
+
+            font-family: Montserrat, Noto Sans KR;
+            font-size: 20px;
+            color: white;
+            text-shadow: 1px 0 rgb(150, 150, 150), -1px 0 rgb(150, 150, 150),
+                0 1px rgb(150, 150, 150), 0 -1px rgb(150, 150, 150);
+        }
+
+        /* 스크린 박스 */
+        #screen {
+            position: fixed;
+            top: 6%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 1px 0 rgb(182, 182, 182), -1px 0 rgb(182, 182, 182), 0 1px rgb(182, 182, 182), 0 -1px rgb(182, 182, 182);
+            border: 2px solid #FFF;
+
+            background-color: #000;
+            border-radius: 5px;
+            width: 500px;
+            height: 350px;
+        }
+
+
+        #screen iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        #mv {
+            border-radius: 5px;
+        }
+
+
+        /* 스크린 켜지는 버튼 */
+        #bt {
+            position: fixed;
+            left: 30%;
+            bottom: -15%;
+
+            /* border: 1px solid #000; */
+            width: 200px;
+            height: 25px;
+            border-radius: 30px;
+            background-color: #fff;
+            box-shadow: 1px 0 rgb(182, 182, 182), -1px 0 rgb(182, 182, 182), 0 1px rgb(182, 182, 182), 0 -1px rgb(182, 182, 182);
+        }
+
+        #bt:hover {
+            cursor: pointer;
+            background: rgb(182, 182, 182);
+        }
+
+        #bt:hover h3 {
+            color: white;
+        }
+
+        #bt h3 {
+            font-size: 15px;
+            margin: 0 auto;
+            padding-top: 1px;
+
+            text-align: center;
+            color: rgb(182, 182, 182);
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: lighter;
+        }
+
+
+
+
+
+
+
+
+        /* 뒤집혀질 이미지 */
+        .pic {
+            position: fixed;
+            /* border: 1px solid #000; */
+            bottom: 0;
+
+            width: 100%;
+            height: 443px;
+        }
+
+        .pic img {
+            position: absolute;
+            width: 400px;
+            border-radius: 5px;
+
+            left: 39.3%;
+        }
+
+        #pic1 img:last-child {
+            transform: rotateY(0deg);
+            transition: transform .3s .3s ease-out;
+        }
+
+        #pic1:hover img:last-child {
+            transform: rotateY(90deg);
+            transition: transform .3s ease-in
+        }
+
+        #pic1 img:first-child {
+            transform: rotateY(90deg);
+            transition: transform .3s ease-in;
+        }
+
+        #pic1:hover img:first-child {
+            transform: rotateY(0deg);
+            transition: transform .3s ease-out .3s;
+        }
+
+        #pic1 img:last-child {
+            border: 2px solid rgb(182, 182, 182);
+        }
+
+
+
+
+
+
+        /* 배경 */
+        .bg {
+            background-color: rgba(231, 230, 232, 0.5);
+        }
+
+
+        /* 공통 */
+        .bld {
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+
+
+
+
+        /* ---- FOOTER : 하단 ---- */
+        #info {
+            position: fixed;
+            /* 부모 */
+            padding: 0;
+            margin: 0;
+            bottom: 0;
+
+            height: 70px;
+            width: 100%;
+            background-color: rgb(182, 182, 182);
+        }
+        #blogo {
+            /* CJ로고 */
+            width: 35px;
+            float: left;
+            padding: 10px 15px;
+        }
+        #info>address {
+            margin: 0;
+            padding: 0;
+            font-style: normal;
+            font-weight: lighter;
+
+            line-height: 12px;
+
+            color: #FFF;
+            font-size: 11px;
+            text-align-last: left;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+
+
+
+    </style>    <!-- 스타일 끝 -->
+
+
+
+
+
+
+    <script>
+        function 멍멍(먹이) {
+            document
+                .getElementById("mv")
+                .src = "http://www.youtube.com/embed/" + 먹이 + "?autoplay=1&mute=1&loop=1&controls=1;"
+        }
+    </script>
+</head>
+
+
+
+
+
+
+
+<body>
+    <!-- 상단 부분 -->
+    <header>
+        <!-- 페이지 타이틀 -->
+        <div class="mtt">기생충 (2019) Parasite</div>
+
+
+        <!-- 1. 상단 화면-->
+        <!-- 1-1. 오른쪽 상단 메뉴 -->
+        <div class="menu">
+            <!-- 1-1-1. 메뉴 -->
+            <nav class="smenu">
+                <!-- 1-1-2. 서브메뉴 -->
+                <ul>
+                    <li><a class="smenutt" href="#">주요 정보</a>
+                        <div class="mnl">
+                            <ol>
+                                <li><a href="#">제작노트</a></li>
+                                <li><a href="#">배우</a></li>
+                                <li><a href="#">제작진</a></li>
+                                <li><a href="#">영화사</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a class="smenutt" href="#">포토</a>
+                        <div class="mnl">
+                            <ol>
+                                <li><a href="#">스틸컷</a></li>
+                                <li><a href="#">포스터</a></li>
+                                <li><a href="#">프로모션</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a class="smenutt" href="#">동영상</a>
+                        <div class="mnl">
+                            <ol>
+                                <li><a href="#">엔딩크레딧</a></li>
+                                <li><a href="#">캐릭터 영상</a></li>
+                                <li><a href="#">무비토크</a></li>
+                                <li><a href="#">인터뷰 영상</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a class="smenutt" href="#">더보기</a>
+                        <div class="mnl">
+                            <ol>
+                                <li><a href="#">관련 뉴스</a></li>
+                                <li><a href="#">명대사</a></li>
+                                <li><a href="#">OST</a></li>
+                                <li><a href="#">수상내역</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a class="smenutt" href="#">커뮤니티</a>
+                        <div class="mnl">
+                            <ol>
+                                <li><a href="#">리뷰</a></li>
+                                <li><a href="#">평점</a></li>
+                                <li><a href="#">한줄평</a></li>
+                            </ol>
+                        </div>
+                    </li>
+
+                </ul>
+            </nav><!-- 서브메뉴 끝 -->
+        </div> <!-- 메뉴 끝 -->
+    </header>
+
+
+
+
+
+
+    <!-- 중간 메인부분 -->
+    <main id="cont" class="part">
+        <div id="screen">
+            <!-- 스크린 박스 --><iframe id="mv"
+                src="http://www.youtube.com/embed/jBdRhhSt3Bc?autoplay=1&mute=1&loop=1&controls=1"
+                allow="autoplay"></iframe>
+            <!-- 예고편 클릭 버튼 -->
+
+            <ul id="bt">
+                <li onclick="멍멍('XzqkpW7Jp3Y')">
+                    <h3>영화 기생충 예고편 미국 버전</h3>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </main>
+
+    <nav>
+        <!-- 2. 메인 화면 -->
+
+    </nav>
+
+
+
+    <!-- 뒤집혀질 이미지들 -->
+    <div class="pic">
+        <div id="pic1">
+            <img src="./700_imgs2/parasite_back.jpg" alt="포스터">
+            <img src="./700_imgs2/parasite.jpg" alt="설명">
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer id="info">
+        <!-- 3. 하단 화면 -->
+        <!-- 3-1. 왼쪽 로고/회사주소 -->
+        <address>
+            <img id="blogo" src="000_imgs/CJ/cj_logo2.png" alt="하단CJ로고"> <!-- CJ로고 -->
+            <p>
+                서울특별시 중구 소월로 2길 12, CJ THE CENTER | 대표이사 : 손경식, 김홍기<br>
+                사업자등록번호 : 104-81-26714
+            </p>
+
+            Ⓒ 씨제이㈜. All Rights Reserved.
+        </address>
+
+
+    </footer>
+
+
+    <div class="bg"></div>
+</body>
+
+</html>
